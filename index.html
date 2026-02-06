@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechPro - Montres, Téléphones & Réparation</title>
+    <title>RoodCell - Montres, Téléphones & Réparation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -15,6 +15,7 @@
             --light: #F5F5F7;
             --text: #1d1d1f;
             --text-light: #6e6e73;
+            --success: #34C759;
         }
 
         * {
@@ -50,15 +51,10 @@
             align-items: center;
         }
 
-        .logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
-            color: var(--secondary);
-            letter-spacing: 2px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .logo-img {
+            width:3.5em;
+            height:auto;
+            border-radius: 50%;
         }
 
         .logo::before {
@@ -83,6 +79,33 @@
 
         nav a:hover {
             color: var(--secondary);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
         }
 
         .cta-button {
@@ -183,6 +206,8 @@
             transition: all 0.3s;
             display: inline-block;
             font-size: 1rem;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary {
@@ -215,43 +240,21 @@
             justify-content: center;
         }
 
-        .device-showcase {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            animation: deviceFloat 3s ease-in-out infinite;
+        .floating-device {
+            font-size: 15rem;
+            animation: floatDevice 3s ease-in-out infinite;
         }
 
-        @keyframes deviceFloat {
+        @keyframes floatDevice {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-20px); }
         }
 
-        .device-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 184, 0, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .device-card:hover {
-            transform: scale(1.05);
-            border-color: var(--secondary);
-            box-shadow: 0 20px 40px rgba(255, 184, 0, 0.2);
-        }
-
-        .device-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 2rem;
-            background: #fff;
+        /* Stats Section */
+        .stats {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 2rem;
         }
 
         .container {
@@ -259,70 +262,69 @@
             margin: 0 auto;
         }
 
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: var(--light);
+        }
+
         .section-title {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 3.5rem;
             text-align: center;
             margin-bottom: 1rem;
-            color: var(--primary);
             letter-spacing: 2px;
         }
 
         .section-subtitle {
             text-align: center;
             color: var(--text-light);
-            margin-bottom: 4rem;
             font-size: 1.1rem;
+            margin-bottom: 4rem;
         }
 
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
+            gap: 2rem;
         }
 
         .service-card {
-            background: var(--light);
+            background: white;
             padding: 3rem 2rem;
             border-radius: 20px;
             text-align: center;
-            transition: all 0.4s;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            transform: scaleX(0);
-            transition: transform 0.4s;
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            border-color: var(--secondary);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         }
 
         .service-icon {
             font-size: 4rem;
             margin-bottom: 1.5rem;
-            display: inline-block;
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover .service-icon {
-            transform: scale(1.1) rotate(5deg);
         }
 
         .service-card h3 {
@@ -339,81 +341,67 @@
         /* Products Section */
         .products {
             padding: 6rem 2rem;
-            background: linear-gradient(180deg, #fff 0%, var(--light) 100%);
+            background: white;
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
         .product-card {
-            background: #fff;
+            background: var(--light);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s;
-            border: 1px solid transparent;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
         }
 
         .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            border-color: var(--secondary);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
         .product-image {
-            height: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary), #2a3055);
+            height: 300px;
+            width:100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 6rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-card:nth-child(2) .product-image {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .product-card:nth-child(3) .product-image {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .product-card:nth-child(4) .product-image {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            font-size: 5rem;
         }
 
         .product-info {
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         .product-info h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 0.5rem;
             color: var(--primary);
         }
 
         .product-price {
-            font-size: 1.8rem;
             color: var(--accent);
+            font-size: 1.8rem;
             font-weight: 700;
             margin-bottom: 1rem;
         }
 
         .product-info p {
             color: var(--text-light);
-            margin-bottom: 1.5rem;
             line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
         }
 
         .product-btn {
             width: 100%;
-            padding: 1rem;
-            background: var(--primary);
-            color: #fff;
+            padding: 0.8rem;
+            background: var(--secondary);
+            color: var(--primary);
             border: none;
             border-radius: 50px;
             font-weight: 700;
@@ -423,54 +411,244 @@
         }
 
         .product-btn:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 61, 0, 0.3);
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .cart-modal.active {
+            display: flex;
+        }
+
+        .cart-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            padding: 2rem;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light);
+        }
+
+        .cart-header h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+
+        .close-cart:hover {
+            color: var(--accent);
+        }
+
+        .cart-items {
+            margin-bottom: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--light);
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .cart-item-icon {
+            font-size: 3rem;
+            background: white;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-details h3 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-price {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .qty-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .qty-btn:hover {
             background: var(--secondary);
             color: var(--primary);
-            transform: scale(1.02);
+        }
+
+        .qty-display {
+            min-width: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .remove-item {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .remove-item:hover {
+            background: #ff1a00;
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
+        }
+
+        .cart-empty-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cart-total {
+            background: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-total h3 {
+            font-size: 1.5rem;
+        }
+
+        .cart-total-amount {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--secondary);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .checkout-btn:hover {
+            background: #2ba84a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(52, 199, 89, 0.3);
+        }
+
+        .checkout-btn:disabled {
+            background: var(--text-light);
+            cursor: not-allowed;
+            transform: none;
         }
 
         /* Repair Section */
         .repair {
+            background: linear-gradient(135deg, var(--primary) 0%, #1a1f3a 100%);
+            color: white;
             padding: 6rem 2rem;
-            background: var(--primary);
-            color: #fff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .repair::before {
-            content: '🔧';
-            position: absolute;
-            font-size: 30rem;
-            opacity: 0.03;
-            right: -5rem;
-            top: 50%;
-            transform: translateY(-50%) rotate(-15deg);
+            text-align: center;
         }
 
         .repair-content {
             max-width: 1000px;
             margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 1;
         }
 
         .repair h2 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            letter-spacing: 2px;
         }
 
         .repair h2 span {
             color: var(--secondary);
         }
 
-        .repair p {
+        .repair > p {
             font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 3rem;
-            opacity: 0.9;
-            line-height: 1.8;
+            line-height: 1.6;
         }
 
         .repair-features {
@@ -481,16 +659,10 @@
         }
 
         .repair-feature {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.1);
             padding: 2rem;
             border-radius: 15px;
-            border: 1px solid rgba(255, 184, 0, 0.2);
-            transition: all 0.3s;
-        }
-
-        .repair-feature:hover {
-            background: rgba(255, 184, 0, 0.1);
-            transform: translateY(-5px);
+            backdrop-filter: blur(10px);
         }
 
         .repair-feature-icon {
@@ -501,75 +673,85 @@
         .repair-feature h4 {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: var(--secondary);
+        }
+
+        .repair-feature p {
+            color: rgba(255, 255, 255, 0.7);
         }
 
         /* Contact Section */
         .contact {
             padding: 6rem 2rem;
-            background: #fff;
+            background: var(--light);
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 3rem;
+            margin-top: 3rem;
         }
 
         .contact-info h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            color: var(--primary);
+            font-size: 1.8rem;
             margin-bottom: 2rem;
+            color: var(--primary);
         }
 
         .contact-item {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             margin-bottom: 2rem;
             align-items: flex-start;
         }
 
         .contact-icon {
             font-size: 2rem;
+            background: var(--primary);
             color: var(--secondary);
-            min-width: 40px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            flex-shrink: 0;
         }
 
         .contact-item-content h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
             color: var(--primary);
+            margin-bottom: 0.3rem;
         }
 
         .contact-item-content p {
             color: var(--text-light);
+            line-height: 1.6;
         }
 
-        .contact-form form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
 
         .form-group {
-            display: flex;
-            flex-direction: column;
+            margin-bottom: 1.5rem;
         }
 
         .form-group label {
+            display: block;
             margin-bottom: 0.5rem;
-            font-weight: 600;
             color: var(--primary);
+            font-weight: 600;
         }
 
         .form-group input,
-        .form-group textarea,
-        .form-group select {
-            padding: 1rem;
-            border: 2px solid #e5e5e5;
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--light);
             border-radius: 10px;
             font-family: 'Work Sans', sans-serif;
             font-size: 1rem;
@@ -577,41 +759,42 @@
         }
 
         .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
+        .form-group select:focus,
+        .form-group textarea:focus {
             outline: none;
             border-color: var(--secondary);
         }
 
         .form-group textarea {
-            resize: vertical;
             min-height: 120px;
+            resize: vertical;
         }
 
         .submit-btn {
-            padding: 1.2rem;
-            background: var(--primary);
-            color: #fff;
+            width: 100%;
+            padding: 1rem;
+            background: var(--secondary);
+            color: var(--primary);
             border: none;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s;
         }
 
         .submit-btn:hover {
-            background: var(--secondary);
-            color: var(--primary);
+            background: var(--accent);
+            color: white;
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(255, 184, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(255, 61, 0, 0.3);
         }
 
         /* Footer */
         footer {
             background: var(--primary);
-            color: #fff;
-            padding: 3rem 2rem 1.5rem;
+            color: white;
+            padding: 3rem 2rem;
             text-align: center;
         }
 
@@ -628,23 +811,51 @@
         }
 
         .social-links a {
-            color: #fff;
-            font-size: 1.8rem;
-            transition: all 0.3s;
+            font-size: 2rem;
+            transition: transform 0.3s;
         }
 
         .social-links a:hover {
-            color: var(--secondary);
-            transform: translateY(-3px);
+            transform: scale(1.2);
         }
 
-        .footer-bottom {
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            opacity: 0.7;
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        /* Responsive */
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--success);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(52, 199, 89, 0.3);
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 3000;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .success-message.show {
+            display: flex;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
         @media (max-width: 968px) {
             .hero-content {
                 grid-template-columns: 1fr;
@@ -659,7 +870,14 @@
                 justify-content: center;
             }
 
-            .services-grid,
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
             .repair-features {
                 grid-template-columns: 1fr;
             }
@@ -669,15 +887,19 @@
             }
 
             nav ul {
-                display: none;
+                gap: 1rem;
             }
 
-            .device-showcase {
-                grid-template-columns: 1fr;
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .cart-content {
+                padding: 1.5rem;
             }
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 600px) {
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -686,8 +908,22 @@
                 font-size: 2.5rem;
             }
 
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
             .hero-buttons {
                 flex-direction: column;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cart-total {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
     </style>
@@ -696,49 +932,61 @@
     <!-- Header -->
     <header>
         <nav>
-            <a href="#" class="logo">TechPro</a>
-            <ul>
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#produits">Produits</a></li>
-                <li><a href="#reparation">Réparation</a></li>
-                <li><a href="#contact" class="cta-button">Contact</a></li>
+          <img src="image/file.jpg" alt="Logo RoodCell" class="logo-img">
+                   <ul>
+                <li><a href="#services" onclick="scrollToSection(event, 'services')">Services</a></li>
+                <li><a href="#produits" onclick="scrollToSection(event, 'produits')">Produits</a></li>
+                <li><a href="#reparation" onclick="scrollToSection(event, 'reparation')">Réparation</a></li>
+                <li><a href="#contact" onclick="scrollToSection(event, 'contact')">Contact</a></li>
+                <li>
+                    <div class="cart-icon" onclick="toggleCart()">
+                        🛒
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="accueil">
+    <section class="hero">
         <div class="hero-content">
             <div>
                 <h1>
-                    Votre Expert en
-                    <span>Technologie</span>
+                    BIENVENUE CHEZ
+                    <span>ROODCELL</span>
                 </h1>
-                <p>Montres connectées, smartphones dernière génération et service de réparation professionnel. Tout ce dont vous avez besoin pour rester connecté.</p>
+                <p>Votre destination premium pour les  smartphones, montres connectées et services de réparation professionnel. Qualité garantie, service exceptionnel.</p>
                 <div class="hero-buttons">
-                    <a href="#produits" class="btn-primary">Voir les Produits</a>
-                    <a href="#contact" class="btn-secondary">Demander Réparation</a>
+                    <a href="#produits" class="btn-primary">Découvrir nos Produits</a>
+                    <a href="#reparation" class="btn-secondary">Service Réparation</a>
                 </div>
             </div>
             <div class="hero-image">
-                <div class="device-showcase">
-                    <div class="device-card">
-                        <div class="device-icon">⌚</div>
-                        <h4>Montres</h4>
-                    </div>
-                    <div class="device-card">
-                        <div class="device-icon">📱</div>
-                        <h4>Téléphones</h4>
-                    </div>
-                    <div class="device-card">
-                        <div class="device-icon">🔧</div>
-                        <h4>Réparation</h4>
-                    </div>
-                    <div class="device-card">
-                        <div class="device-icon">✨</div>
-                        <h4>Garantie</h4>
-                    </div>
+                <div class="floating-device">📱</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>5000+</h3>
+                    <p>Clients Satisfaits</p>
+                </div>
+                <div class="stat-item">
+                    <h3>500+</h3>
+                    <p>Produits Vendus</p>
+                </div>
+                <div class="stat-item">
+                    <h3>2000+</h3>
+                    <p>Réparations</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Garantie Qualité</p>
                 </div>
             </div>
         </div>
@@ -776,39 +1024,66 @@
             <p class="section-subtitle">Nos meilleures ventes du moment</p>
             <div class="products-grid">
                 <div class="product-card">
-                    <div class="product-image">📱</div>
+                  <img src="image/h27 ultra3.jpeg" alt="H27 Ultra 3 watch" class="product-image">
                     <div class="product-info">
-                        <h3>iPhone 15 Pro Max</h3>
-                        <div class="product-price">1 299€</div>
-                        <p>Le dernier iPhone avec puce A17 Pro, appareil photo 48MP et design en titane.</p>
-                        <button class="product-btn">Voir Détails</button>
+                        <h3>H27 Ultra 3 watch</h3>
+                        <div class="product-price">3500gds</div>
+                        <p>La H27 Ultra 3 est une montre moderne et performante, conçue pour ceux qui veulent allier style et fonctionnalité.</p>
+                        <button class="product-btn" onclick="addToCart('H27 Ultra 3 watch', 3500, '⌚')">Ajouter au Panier</button>
                     </div>
                 </div>
                 <div class="product-card">
-                    <div class="product-image">⌚</div>
+                  <img src="image/t55 promax.jpeg" alt="T55 Pro max" class="product-image">
                     <div class="product-info">
-                        <h3>Apple Watch Series 9</h3>
-                        <div class="product-price">449€</div>
-                        <p>Montre connectée avec suivi santé avancé, GPS et écran always-on brillant.</p>
-                        <button class="product-btn">Voir Détails</button>
+                        <h3>T55 Pro max </h3>
+                        <div class="product-price">3000gds</div>
+                        <p>Le T55 Pro Max est une montre intelligente économique polyvalente, souvent vendue en pack avec des écouteurs Bluetooth sans fil (TWS) et des bracelets interchangeables.</p>
+                        <button class="product-btn" onclick="addToCart('T55 Pro max', 3000, '⌚')">Ajouter au Panier</button>
                     </div>
                 </div>
                 <div class="product-card">
-                    <div class="product-image">📱</div>
+                   <img src="image/dz09.jpeg" alt="DZ09" class="product-image">
                     <div class="product-info">
-                        <h3>Samsung Galaxy S24 Ultra</h3>
-                        <div class="product-price">1 199€</div>
-                        <p>Smartphone premium avec S Pen, zoom 100x et intelligence artificielle Galaxy AI.</p>
-                        <button class="product-btn">Voir Détails</button>
+                        <h3>DZ09</h3>
+                        <div class="product-price">3250gds</div>
+                        <p>La DZ09 est une montre intelligente économique qui peut fonctionner comme un appareil autonome avec une carte micro-SIM 2G ou être associée à un smartphone via Bluetooth pour les notifications et les appels</p>
+                        <button class="product-btn" onclick="addToCart('DZ09', 3250, 'ok⌚')">Ajouter au Panier</button>
                     </div>
                 </div>
                 <div class="product-card">
-                    <div class="product-image">⌚</div>
+                    <img src="image/ancenc.jpeg" alt="Samsung Galaxy Watch 6" class="product-image">
                     <div class="product-info">
-                        <h3>Samsung Galaxy Watch 6</h3>
-                        <div class="product-price">349€</div>
-                        <p>Montre élégante avec analyse du sommeil, suivi fitness et autonomie 40h.</p>
-                        <button class="product-btn">Voir Détails</button>
+                        <h3>A9 pro Airpods</h3>
+                        <div class="product-price">3000gds</div>
+                        <p>Les écouteurs sans fil A9 Pro sont des alternatives économiques inspirées des AirPods d'Apple, dotées d'un boîtier de charge unique avec un écran tactile pour le contrôle direct des fonctions.</p>
+                        <button class="product-btn" onclick="addToCart('A9 pro Airpods', 3000, '⌚')">Ajouter au Panier</button>
+                    </div>
+                </div>
+          <div class="product-card">
+                  <img src="image/i9 ultra 3.avif" alt="iPhone 15 Pro Max" class="product-image">
+                    <div class="product-info">
+                        <h3>I9 Ultra 3</h3>
+                        <div class="product-price">3500gds</div>
+                        <p>L'i9 Ultra 3 est une montre intelligente économique qui offre des fonctionnalités de suivi de la santé et de fitness, la connectivité Bluetooth pour les notifications et les appels, et est souvent vendue en pack avec des écouteurs sans fil et plusieurs bracelets interchangeables.</p>
+                        <button class="product-btn" onclick="addToCart('I9 Ultra 3', 3500, '📱')">Ajouter au Panier</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                  <img src="image/cellular.jfif" alt="iPhone 15 Pro Max" class="product-image">
+                    <div class="product-info">
+                        <h3>Cellular version smartwatch m3</h3>
+                        <div class="product-price">10010gds</div>
+                        <p>La smartwatch M3 est disponible dans des versions qui incluent la connectivité cellulaire (GSM 2G) via un emplacement pour carte micro-SIM, permettant une utilisation autonome pour les appels et messages sans être connectée à un smartphone.</p>
+                        <button class="product-btn" onclick="addToCart('Cellular version smartwatch m3', 10010, '⌚')">Ajouter au Panier</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                  <img src="image/smart.jfif" alt="smart watch" class="product-image">
+                    <div class="product-info">
+                        <h3>Smart Watch max</h3>
+                        <div class="product-price">2500gds</div>
+                        <p>"Smart Watch Max" n'est pas un nom de produit spécifique d'une grande marque, mais fait référence à de nombreux modèles de montres intelligentes économiques génériques souvent caractérisées par un grand écran, des fonctions de santé de base et la connectivité Bluetooth. Certains modèles spécifiques incluent la T55 Pro Max et la Max Pro Prime</p>
+                        <button class="product-btn" onclick="addToCart('Smart Watch max', 2500, '⌚')">Ajouter au Panier</button>
                     </div>
                 </div>
             </div>
@@ -862,15 +1137,15 @@
                     <div class="contact-item">
                         <div class="contact-icon">📞</div>
                         <div class="contact-item-content">
-                            <h4>Téléphone</h4>
-                            <p>+33 1 23 45 67 89</p>
+                            <h4>Téléphone / WhatsApp</h4>
+                            <p><a href="https://wa.me/50934108302" target="_blank"> +509 34 10 8302</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">✉️</div>
                         <div class="contact-item-content">
                             <h4>Email</h4>
-                            <p>contact@techpro.fr</p>
+                             <p><a href="mailto:jeanroodymilien91@gmail.com" class="__cf_email__" data-cfemail="5e3d31302a3f3d2a1e2c31313a3d3b3232703d3133">[email&#160;protected]</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -883,7 +1158,7 @@
                 </div>
 
                 <div class="contact-form">
-                    <form>
+                    <form onsubmit="handleContactSubmit(event)">
                         <div class="form-group">
                             <label for="name">Nom Complet *</label>
                             <input type="text" id="name" name="name" required>
@@ -920,49 +1195,278 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <div class="social-links">
-                <a href="https://www.facebook.com/profile.php?id=61587240992112" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://www.instagram.com/associationassl07/#" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://www.youtube.com/channel/UCZLN8luq2mDHZzPxW3dz-Pw" target="_blank"><img src="image/youtube.png" style="width: 50px; height: 50px;"></a>
-                <a href="https://www.tiktok.com/@asslassociation?is_from_webapp=1&sender_device=pc" target="_blank"><img src="image/tiktok.png" style="width: 50px; height: 50px;"></a>
-            </div>
+           <div class="social-links">
+        <a href="https://www.facebook.com/profile.php?id=61587240992112" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
+        <a href="https://www.instagram.com/associationassl07/#" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
+        <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
+        <a href="https://www.youtube.com/channel/UCZLN8luq2mDHZzPxW3dz-Pw" target="_blank"><img src="image/youtube.png" style="width: 50px; height: 50px;"></a>
+         <a href="https://www.tiktok.com/@asslassociation?is_from_webapp=1&sender_device=pc" target="_blank"><img src="image/tiktok.png" style="width: 50px; height: 50px;"></a>
+    </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 TechPro. Tous droits réservés. | Vente & Réparation de Montres et Téléphones</p>
+                <p>&copy; 2026 RoodCell. Tous droits réservés. | Vente & Réparation de Montres et Téléphones</p>
             </div>
         </div>
     </footer>
 
-    <script>
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>Mon Panier</h2>
+                <button class="close-cart" onclick="toggleCart()">×</button>
+            </div>
+            
+            <div id="cartItemsContainer">
+                <!-- Cart items will be inserted here -->
+            </div>
+
+            <div id="cartSummary" style="display: none;">
+                <div class="cart-total">
+                    <h3>Total</h3>
+                    <div class="cart-total-amount" id="cartTotalAmount">0gds</div>
+                </div>
+                <button class="checkout-btn" onclick="proceedToCheckout()">
+                    💬 Commander via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        ✓ Produit ajouté au panier !
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Cart functionality
+        let cart = [];
+
+        // Load cart from localStorage
+        function loadCart() {
+            const savedCart = localStorage.getItem('roodcellCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartUI();
+                updateProductButtons();
+            }
+        }
+
+        // Save cart to localStorage
+        function saveCart() {
+            localStorage.setItem('roodcellCart', JSON.stringify(cart));
+        }
+
+        // Add to cart or remove from cart
+        function addToCart(name, price, icon) {
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                // Si le produit est déjà dans le panier, on le retire
+                removeFromCart(name);
+            } else {
+                // Sinon on l'ajoute
+                cart.push({
+                    name: name,
+                    price: price,
+                    icon: icon,
+                    quantity: 1
+                });
+                saveCart();
+                updateCartUI();
+                showSuccessMessage();
+            }
+            
+            updateProductButtons();
+        }
+
+        // Remove from cart
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            saveCart();
+            updateCartUI();
+            updateProductButtons();
+        }
+
+        // Update quantity
+        function updateQuantity(name, change) {
+            const item = cart.find(item => item.name === name);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(name);
+                } else {
+                    saveCart();
+                    updateCartUI();
+                }
+            }
+        }
+
+        // Update product buttons based on cart content
+        function updateProductButtons() {
+            const productButtons = document.querySelectorAll('.product-btn');
+            
+            productButtons.forEach(button => {
+                const productName = button.getAttribute('onclick').match(/'([^']+)'/)[1];
+                const isInCart = cart.some(item => item.name === productName);
+                
+                if (isInCart) {
+                    button.textContent = 'Retirer du Panier';
+                    button.style.background = 'var(--accent)';
+                    button.style.color = 'white';
+                } else {
+                    button.textContent = 'Ajouter au Panier';
+                    button.style.background = 'var(--secondary)';
+                    button.style.color = 'var(--primary)';
+                }
+            });
+        }
+
+        // Update cart UI
+        function updateCartUI() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItemsContainer = document.getElementById('cartItemsContainer');
+            const cartSummary = document.getElementById('cartSummary');
+            const cartTotalAmount = document.getElementById('cartTotalAmount');
+
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+
+            // Update cart items
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="cart-empty">
+                        <div class="cart-empty-icon">🛒</div>
+                        <h3>Votre panier est vide</h3>
+                        <p>Ajoutez des produits pour commencer votre commande</p>
+                        <button class="btn-primary" onclick="toggleCart(); document.getElementById('produits').scrollIntoView({behavior: 'smooth'})" style="margin-top: 1.5rem;">Voir les Produits</button>
+                    </div>
+                `;
+                cartSummary.style.display = 'none';
+            } else {
+                cartItemsContainer.innerHTML = `
+                    <div class="cart-items">
+                        ${cart.map(item => `
+                            <div class="cart-item">
+                                <div class="cart-item-icon">${item.icon}</div>
+                                <div class="cart-item-details">
+                                    <h3>${item.name}</h3>
+                                    <div class="cart-item-price">${item.price}gds</div>
+                                    <div class="cart-item-quantity">
+                                        <button class="qty-btn" onclick="updateQuantity('${item.name}', -1)">−</button>
+                                        <span class="qty-display">${item.quantity}</span>
+                                        <button class="qty-btn" onclick="updateQuantity('${item.name}', 1)">+</button>
+                                    </div>
+                                </div>
+                                <button class="remove-item" onclick="removeFromCart('${item.name}')">Retirer</button>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+                // Calculate and display total
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartTotalAmount.textContent = `${total}gds`;
+                cartSummary.style.display = 'block';
+            }
+        }
+
+        // Toggle cart
+        function toggleCart() {
+            const cartModal = document.getElementById('cartModal');
+            cartModal.classList.toggle('active');
+        }
+
+        // Show success message
+        function showSuccessMessage() {
+            const message = document.getElementById('successMessage');
+            message.classList.add('show');
+            setTimeout(() => {
+                message.classList.remove('show');
+            }, 2000);
+        }
+
+        // Proceed to checkout via WhatsApp
+        function proceedToCheckout() {
+            if (cart.length === 0) return;
+
+            const currentHour = new Date().getHours();
+            const greeting = currentHour < 18 ? 'Bonjour' : 'Bonsoir';
+            
+            let message = `${greeting}, j'aimerais acheter les produits suivants :\n\n`;
+            
+            cart.forEach(item => {
+                message += `${item.icon} ${item.name}\n`;
+                message += `   Quantité: ${item.quantity}\n`;
+                message += `   Prix unitaire: ${item.price}gds\n`;
+                message += `   Sous-total: ${item.price * item.quantity}gds\n\n`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `Total: ${total}gds\n\n`;
+            message += `Merci !`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/47462529?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
+        }
+
+        // Handle contact form submit
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+            event.target.reset();
+        }
+
+        // Scroll to section function for header navigation
+        function scrollToSection(event, sectionId) {
+            event.preventDefault();
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    // Ferme le panier seulement s'il est ouvert
+                    const cartModal = document.getElementById('cartModal');
+                    if (cartModal.classList.contains('active')) {
+                        toggleCart();
+                    }
+                    setTimeout(() => {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }, 100);
                 }
             });
-        });
-
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
-            this.reset();
         });
 
         // Header background on scroll
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
-            if (window.scrollY > 50) {
+            if (window.scrollY > 100) {
                 header.style.background = 'rgba(10, 14, 39, 0.98)';
             } else {
                 header.style.background = 'rgba(10, 14, 39, 0.95)';
             }
+        });
+
+        // Load cart on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadCart();
+            // Petit délai pour s'assurer que tous les boutons sont chargés
+            setTimeout(updateProductButtons, 100);
         });
     </script>
 </body>
