@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="image/file.jpg" type="image/x-icon">
     <title>RoodCell - Montres, Téléphones & Réparation</title>
+    <link rel="icon" href="image/file.jpg" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -52,12 +52,42 @@
             align-items: center;
         }
 
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         .logo-img {
             width:3.5em;
             height:auto;
             border-radius: 50%;
         }
-
+.logo-img:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}
         .logo::before {
             content: '⚡';
             font-size: 1.8rem;
@@ -79,6 +109,37 @@
         }
 
         nav a:hover {
+            color: var(--secondary);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 39, 0.98);
+            flex-direction: column;
+            padding: 2rem;
+            gap: 1.5rem;
+            z-index: 999;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255, 184, 0, 0.2);
             color: var(--secondary);
         }
 
@@ -772,7 +833,6 @@
         }
 
         .submit-btn {
-            width: 100%;
             padding: 1rem;
             background: var(--secondary);
             color: var(--primary);
@@ -785,10 +845,39 @@
         }
 
         .submit-btn:hover {
-            background: var(--accent);
-            color: white;
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(255, 61, 0, 0.3);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .button-group .submit-btn {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .whatsapp-btn {
+            background: #25D366 !important;
+            color: white !important;
+        }
+
+        .whatsapp-btn:hover {
+            background: #20ba5a !important;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3) !important;
+        }
+
+        .gmail-btn {
+            background: #EA4335 !important;
+            color: white !important;
+        }
+
+        .gmail-btn:hover {
+            background: #d33426 !important;
+            box-shadow: 0 10px 30px rgba(234, 67, 53, 0.3) !important;
         }
 
         /* Footer */
@@ -888,15 +977,23 @@
             }
 
             nav ul {
-                gap: 1rem;
+                display: none;
             }
 
-            nav a {
-                font-size: 0.85rem;
+            .hamburger {
+                display: flex;
             }
 
             .cart-content {
                 padding: 1.5rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .button-group .submit-btn {
+                width: 100%;
             }
         }
 
@@ -934,7 +1031,12 @@
     <header>
         <nav>
           <img src="image/file.jpg" alt="Logo RoodCell" class="logo-img">
-                   <ul>
+          <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="navMenu">
                 <li><a href="#services" onclick="scrollToSection(event, 'services')">Services</a></li>
                 <li><a href="#produits" onclick="scrollToSection(event, 'produits')">Produits</a></li>
                 <li><a href="#reparation" onclick="scrollToSection(event, 'reparation')">Réparation</a></li>
@@ -947,6 +1049,12 @@
                 </li>
             </ul>
         </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#services" onclick="scrollToSection(event, 'services'); closeMobileMenu();">Services</a>
+            <a href="#produits" onclick="scrollToSection(event, 'produits'); closeMobileMenu();">Produits</a>
+            <a href="#reparation" onclick="scrollToSection(event, 'reparation'); closeMobileMenu();">Réparation</a>
+            <a href="#contact" onclick="scrollToSection(event, 'contact'); closeMobileMenu();">Contact</a>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -1139,14 +1247,14 @@
                         <div class="contact-icon">📞</div>
                         <div class="contact-item-content">
                             <h4>Téléphone / WhatsApp</h4>
-                            <p><a href="https://wa.me/50934108302" target="_blank"> +509 34 10 8302</a></p>
+                            <p><a href="https://wa.me/50934108302" target="_blank" style="color: var(--text-light); text-decoration: none;"> +509 34 10 8302</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">✉️</div>
                         <div class="contact-item-content">
                             <h4>Email</h4>
-                             <p><a href="mailto:jeanroodymilien91@gmail.com" class="__cf_email__" data-cfemail="5e3d31302a3f3d2a1e2c31313a3d3b3232703d3133">[email&#160;protected]</a></p>
+                             <p><a href="mailto:jeanroodymilien91@gmail.com" style="color: var(--text-light); text-decoration: none;">jeanroodymilien91@gmail.com</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -1159,7 +1267,7 @@
                 </div>
 
                 <div class="contact-form">
-                    <form onsubmit="handleContactSubmit(event)">
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Nom Complet *</label>
                             <input type="text" id="name" name="name" required>
@@ -1186,7 +1294,14 @@
                             <label for="message">Message *</label>
                             <textarea id="message" name="message" required></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Envoyer le Message</button>
+                        <div class="button-group">
+                            <button type="button" class="submit-btn whatsapp-btn" onclick="sendWhatsApp()">
+                                💬 WhatsApp
+                            </button>
+                            <button type="button" class="submit-btn gmail-btn" onclick="sendGmail()">
+                                📧 Gmail
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -1238,11 +1353,158 @@
         ✓ Produit ajouté au panier !
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // Configuration
+        const CONFIG = {
+            whatsappNumber: '5094746252',
+            gmailEmail: 'theandrique.louisjuste@gmail.com'
+        };
+
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        }
+
+        // Valider le formulaire
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value.trim();
+
+            if (!name) {
+                alert('Veuillez entrer votre nom complet');
+                return false;
+            }
+
+            if (!email || !email.includes('@')) {
+                alert('Veuillez entrer un email valide');
+                return false;
+            }
+
+            if (!service) {
+                alert('Veuillez sélectionner un type de demande');
+                return false;
+            }
+
+            if (!message) {
+                alert('Veuillez écrire un message');
+                return false;
+            }
+
+            return true;
+        }
+
+        // Construire le message formaté
+        function buildFormattedMessage() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value.trim();
+
+            const serviceLabels = {
+                'achat': 'Achat de Produit',
+                'reparation': 'Demande de Réparation',
+                'devis': 'Demande de Devis',
+                'autre': 'Autre Question'
+            };
+
+            const serviceLabel = serviceLabels[service] || service;
+
+            return `📋 *NOUVELLE DEMANDE DE CONTACT*
+
+👤 *Nom:* ${name}
+📧 *Email:* ${email}
+${phone ? `📱 *Téléphone:* ${phone}` : ''}
+🎯 *Type de Demande:* ${serviceLabel}
+
+💬 *Message:*
+${message}
+
+---
+Message envoyé via le formulaire de contact RoodCell`;
+        }
+
+        // Envoyer par WhatsApp
+        function sendWhatsApp() {
+            if (!validateForm()) {
+                return;
+            }
+
+            const message = buildFormattedMessage();
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, '_blank');
+            document.getElementById('contactForm').reset();
+            alert('Vous allez être redirigé vers WhatsApp. Cliquez sur "Envoyer" pour confirmer votre message.');
+        }
+
+        // Envoyer par Gmail
+        function sendGmail() {
+            if (!validateForm()) {
+                return;
+            }
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value.trim();
+
+            const serviceLabels = {
+                'achat': 'Achat de Produit',
+                'reparation': 'Demande de Réparation',
+                'devis': 'Demande de Devis',
+                'autre': 'Autre Question'
+            };
+
+            const serviceLabel = serviceLabels[service] || service;
+
+            const subject = `Nouvelle demande de contact RoodCell - ${serviceLabel}`;
+            const body = `Bonjour,
+
+J'ai reçu une nouvelle demande via le formulaire de contact du site RoodCell.
+
+INFORMATIONS DU CLIENT:
+========================
+Nom: ${name}
+Email: ${email}
+Téléphone: ${phone || 'Non fourni'}
+Type de Demande: ${serviceLabel}
+
+MESSAGE:
+========================
+${message}
+
+---
+Message envoyé automatiquement via le formulaire de contact du site www.roodcell.com`;
+
+            const encodedSubject = encodeURIComponent(subject);
+            const encodedBody = encodeURIComponent(body);
+            const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${CONFIG.gmailEmail}&su=${encodedSubject}&body=${encodedBody}`;
+
+            window.open(gmailUrl, '_blank');
+            document.getElementById('contactForm').reset();
+            alert('Vous allez être redirigé vers Gmail. Cliquez sur "Envoyer" pour confirmer votre message.');
+        }
+
         // Cart functionality
         let cart = [];
 
-        // Load cart from localStorage
         function loadCart() {
             const savedCart = localStorage.getItem('roodcellCart');
             if (savedCart) {
@@ -1252,20 +1514,16 @@
             }
         }
 
-        // Save cart to localStorage
         function saveCart() {
             localStorage.setItem('roodcellCart', JSON.stringify(cart));
         }
 
-        // Add to cart or remove from cart
         function addToCart(name, price, icon) {
             const existingItem = cart.find(item => item.name === name);
             
             if (existingItem) {
-                // Si le produit est déjà dans le panier, on le retire
                 removeFromCart(name);
             } else {
-                // Sinon on l'ajoute
                 cart.push({
                     name: name,
                     price: price,
@@ -1280,7 +1538,6 @@
             updateProductButtons();
         }
 
-        // Remove from cart
         function removeFromCart(name) {
             cart = cart.filter(item => item.name !== name);
             saveCart();
@@ -1288,7 +1545,6 @@
             updateProductButtons();
         }
 
-        // Update quantity
         function updateQuantity(name, change) {
             const item = cart.find(item => item.name === name);
             if (item) {
@@ -1302,7 +1558,6 @@
             }
         }
 
-        // Update product buttons based on cart content
         function updateProductButtons() {
             const productButtons = document.querySelectorAll('.product-btn');
             
@@ -1322,18 +1577,15 @@
             });
         }
 
-        // Update cart UI
         function updateCartUI() {
             const cartCount = document.getElementById('cartCount');
             const cartItemsContainer = document.getElementById('cartItemsContainer');
             const cartSummary = document.getElementById('cartSummary');
             const cartTotalAmount = document.getElementById('cartTotalAmount');
 
-            // Update cart count
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             cartCount.textContent = totalItems;
 
-            // Update cart items
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = `
                     <div class="cart-empty">
@@ -1365,20 +1617,17 @@
                     </div>
                 `;
                 
-                // Calculate and display total
                 const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
                 cartTotalAmount.textContent = `${total}gds`;
                 cartSummary.style.display = 'block';
             }
         }
 
-        // Toggle cart
         function toggleCart() {
             const cartModal = document.getElementById('cartModal');
             cartModal.classList.toggle('active');
         }
 
-        // Show success message
         function showSuccessMessage() {
             const message = document.getElementById('successMessage');
             message.classList.add('show');
@@ -1387,7 +1636,6 @@
             }, 2000);
         }
 
-        // Proceed to checkout via WhatsApp
         function proceedToCheckout() {
             if (cart.length === 0) return;
 
@@ -1408,19 +1656,11 @@
             message += `Merci !`;
             
             const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/47462529?text=${encodedMessage}`;
+            const whatsappURL = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodedMessage}`;
             
             window.open(whatsappURL, '_blank');
         }
 
-        // Handle contact form submit
-        function handleContactSubmit(event) {
-            event.preventDefault();
-            alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
-            event.target.reset();
-        }
-
-        // Scroll to section function for header navigation
         function scrollToSection(event, sectionId) {
             event.preventDefault();
             const section = document.getElementById(sectionId);
@@ -1432,13 +1672,11 @@
             }
         }
 
-        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    // Ferme le panier seulement s'il est ouvert
                     const cartModal = document.getElementById('cartModal');
                     if (cartModal.classList.contains('active')) {
                         toggleCart();
@@ -1453,7 +1691,6 @@
             });
         });
 
-        // Header background on scroll
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
@@ -1463,10 +1700,8 @@
             }
         });
 
-        // Load cart on page load
         window.addEventListener('DOMContentLoaded', function() {
             loadCart();
-            // Petit délai pour s'assurer que tous les boutons sont chargés
             setTimeout(updateProductButtons, 100);
         });
     </script>
