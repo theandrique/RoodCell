@@ -52,11 +52,24 @@
             align-items: center;
         }
 
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
         .hamburger {
             display: none;
             flex-direction: column;
             cursor: pointer;
             gap: 5px;
+            order: 3;
         }
 
         .hamburger span {
@@ -80,17 +93,14 @@
         }
 
         .logo-img {
-            width:3.5em;
-            height:auto;
+            width: 3.5em;
+            height: auto;
             border-radius: 50%;
         }
-.logo-img:hover{
-    transform: scale(1.1);
-    transition: transform 0.3s;
-}
-        .logo::before {
-            content: '⚡';
-            font-size: 1.8rem;
+
+        .logo-img:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s;
         }
 
         nav ul {
@@ -148,6 +158,7 @@
             cursor: pointer;
             font-size: 1.5rem;
             transition: transform 0.3s;
+            order: 2;
         }
 
         .cart-icon:hover {
@@ -428,7 +439,7 @@
         .product-image {
             background: linear-gradient(135deg, var(--primary), #2a3055);
             height: 300px;
-            width:100%;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -947,6 +958,33 @@
 
         /* Responsive Design */
         @media (max-width: 968px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-left {
+                order: 1;
+            }
+
+            .nav-right {
+                order: 2;
+                gap: 1rem;
+            }
+
+            .cart-icon {
+                display: flex;
+                order: 2;
+            }
+
+            .hamburger {
+                display: flex;
+                order: 3;
+            }
+
+            nav ul {
+                display: none;
+            }
+
             .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -974,14 +1012,6 @@
 
             .contact-grid {
                 grid-template-columns: 1fr;
-            }
-
-            nav ul {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
             }
 
             .cart-content {
@@ -1023,6 +1053,10 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+
+            .logo-img {
+                width: 2.8em;
+            }
         }
     </style>
 </head>
@@ -1030,30 +1064,35 @@
     <!-- Header -->
     <header>
         <nav>
-          <img src="image/file.jpg" alt="Logo RoodCell" class="logo-img">
-          <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-left">
+                <img src="image/file.jpg" alt="Logo RoodCell" class="logo-img">
             </div>
+            
             <ul id="navMenu">
                 <li><a href="#services" onclick="scrollToSection(event, 'services')">Services</a></li>
-                <li><a href="#produits" onclick="scrollToSection(event, 'produits')">Produits</a></li>
+                <li><a href="#produits" onclick="scrollToSection(event, 'produits')">Boutique</a></li>
                 <li><a href="#reparation" onclick="scrollToSection(event, 'reparation')">Réparation</a></li>
                 <li><a href="#contact" onclick="scrollToSection(event, 'contact')">Contact</a></li>
-                <li>
-                    <div class="cart-icon" onclick="toggleCart()">
-                        🛒
-                        <span class="cart-count" id="cartCount">0</span>
-                    </div>
-                </li>
             </ul>
+
+            <div class="nav-right">
+                <div class="cart-icon" onclick="toggleCart()">
+                    🛒
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </nav>
+        
         <div class="mobile-menu" id="mobileMenu">
-            <a href="#services" onclick="scrollToSection(event, 'services'); closeMobileMenu();">Services</a>
-            <a href="#produits" onclick="scrollToSection(event, 'produits'); closeMobileMenu();">Produits</a>
-            <a href="#reparation" onclick="scrollToSection(event, 'reparation'); closeMobileMenu();">Réparation</a>
-            <a href="#contact" onclick="scrollToSection(event, 'contact'); closeMobileMenu();">Contact</a>
+            <a href="#services" onclick="scrollToSection(event, 'services'); closeMobileMenu();">🛠️ Nos Services</a>
+            <a href="#produits" onclick="scrollToSection(event, 'produits'); closeMobileMenu();">🛍️ Boutique</a>
+            <a href="#reparation" onclick="scrollToSection(event, 'reparation'); closeMobileMenu();">🔧 Réparation</a>
+            <a href="#contact" onclick="scrollToSection(event, 'contact'); closeMobileMenu();">📞 Nous Contacter</a>
         </div>
     </header>
 
@@ -1065,10 +1104,10 @@
                     BIENVENUE CHEZ
                     <span>ROODCELL</span>
                 </h1>
-                <p>Votre destination premium pour les  smartphones, montres connectées et services de réparation professionnel. Qualité garantie, service exceptionnel.</p>
+                <p>Votre destination premium pour les smartphones, montres connectées et services de réparation professionnels. Qualité garantie, service exceptionnel.</p>
                 <div class="hero-buttons">
-                    <a href="#produits" class="btn-primary">Découvrir nos Produits</a>
-                    <a href="#reparation" class="btn-secondary">Service Réparation</a>
+                    <a href="#produits" class="btn-primary">Voir la Boutique</a>
+                    <a href="#reparation" class="btn-secondary">Réparation Express</a>
                 </div>
             </div>
             <div class="hero-image">
@@ -1115,7 +1154,7 @@
                 <div class="service-card">
                     <div class="service-icon">⌚</div>
                     <h3>Montres Connectées</h3>
-                    <p>Montres intelligentes pour suivre votre santé, sport et rester connecté. Apple Watch, Samsung Galaxy Watch, Garmin.</p>
+                    <p>Montres intelligentes pour suivre votre santé, sport et rester connecté. Apple Watch, Samsung Galaxy Watch, et plus.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">🔧</div>
@@ -1133,66 +1172,66 @@
             <p class="section-subtitle">Nos meilleures ventes du moment</p>
             <div class="products-grid">
                 <div class="product-card">
-                  <img src="image/h27 ultra3.jpeg" alt="H27 Ultra 3 watch" class="product-image">
+                    <img src="image/h27 ultra3.jpeg" alt="H27 Ultra 3 watch" class="product-image">
                     <div class="product-info">
-                        <h3>H27 Ultra 3 watch</h3>
-                        <div class="product-price">3500gds</div>
-                        <p>La H27 Ultra 3 est une montre moderne et performante, conçue pour ceux qui veulent allier style et fonctionnalité.</p>
-                        <button class="product-btn" onclick="addToCart('H27 Ultra 3 watch', 3500, '⌚')">Ajouter au Panier</button>
+                        <h3>H27 Ultra 3 Watch</h3>
+                        <div class="product-price">3500 gds</div>
+                        <p>Montre moderne et performante, conçue pour allier style et fonctionnalité au quotidien.</p>
+                        <button class="product-btn" onclick="addToCart('H27 Ultra 3 Watch', 3500, '⌚')">Ajouter au Panier</button>
                     </div>
                 </div>
                 <div class="product-card">
-                  <img src="image/t55 promax.jpeg" alt="T55 Pro max" class="product-image">
+                    <img src="image/t55 promax.jpeg" alt="T55 Pro max" class="product-image">
                     <div class="product-info">
-                        <h3>T55 Pro max </h3>
-                        <div class="product-price">3000gds</div>
-                        <p>Le T55 Pro Max est une montre intelligente économique polyvalente, souvent vendue en pack avec des écouteurs Bluetooth sans fil (TWS) et des bracelets interchangeables.</p>
-                        <button class="product-btn" onclick="addToCart('T55 Pro max', 3000, '⌚')">Ajouter au Panier</button>
+                        <h3>T55 Pro Max</h3>
+                        <div class="product-price">3000 gds</div>
+                        <p>Montre intelligente économique avec écouteurs TWS et bracelets interchangeables inclus.</p>
+                        <button class="product-btn" onclick="addToCart('T55 Pro Max', 3000, '⌚')">Ajouter au Panier</button>
                     </div>
                 </div>
                 <div class="product-card">
-                   <img src="image/dz09.jpeg" alt="DZ09" class="product-image">
+                    <img src="image/dz09.jpeg" alt="DZ09" class="product-image">
                     <div class="product-info">
-                        <h3>DZ09</h3>
-                        <div class="product-price">3250gds</div>
-                        <p>La DZ09 est une montre intelligente économique qui peut fonctionner comme un appareil autonome avec une carte micro-SIM 2G ou être associée à un smartphone via Bluetooth pour les notifications et les appels</p>
-                        <button class="product-btn" onclick="addToCart('DZ09', 3250, 'ok⌚')">Ajouter au Panier</button>
+                        <h3>DZ09 Smartwatch</h3>
+                        <div class="product-price">3250 gds</div>
+                        <p>Montre intelligente avec carte SIM 2G intégrée pour appels et notifications autonomes.</p>
+                        <button class="product-btn" onclick="addToCart('DZ09 Smartwatch', 3250, '⌚')">Ajouter au Panier</button>
                     </div>
                 </div>
                 <div class="product-card">
-                    <img src="image/ancenc.jpeg" alt="Samsung Galaxy Watch 6" class="product-image">
+                    <img src="image/ancenc.jpeg" alt="A9 Pro Airpods" class="product-image">
                     <div class="product-info">
-                        <h3>A9 pro Airpods</h3>
-                        <div class="product-price">3000gds</div>
-                        <p>Les écouteurs sans fil A9 Pro sont des alternatives économiques inspirées des AirPods d'Apple, dotées d'un boîtier de charge unique avec un écran tactile pour le contrôle direct des fonctions.</p>
-                        <button class="product-btn" onclick="addToCart('A9 pro Airpods', 3000, '⌚')">Ajouter au Panier</button>
-                    </div>
-                </div>
-          <div class="product-card">
-                  <img src="image/i9 ultra 3.avif" alt="iPhone 15 Pro Max" class="product-image">
-                    <div class="product-info">
-                        <h3>I9 Ultra 3</h3>
-                        <div class="product-price">3500gds</div>
-                        <p>L'i9 Ultra 3 est une montre intelligente économique qui offre des fonctionnalités de suivi de la santé et de fitness, la connectivité Bluetooth pour les notifications et les appels, et est souvent vendue en pack avec des écouteurs sans fil et plusieurs bracelets interchangeables.</p>
-                        <button class="product-btn" onclick="addToCart('I9 Ultra 3', 3500, '📱')">Ajouter au Panier</button>
+                        <h3>A9 Pro Airpods</h3>
+                        <div class="product-price">3000 gds</div>
+                        <p>Écouteurs sans fil avec boîtier de charge tactile pour un contrôle facile et intuitif.</p>
+                        <button class="product-btn" onclick="addToCart('A9 Pro Airpods', 3000, '🎧')">Ajouter au Panier</button>
                     </div>
                 </div>
                 <div class="product-card">
-                  <img src="image/cellular.jfif" alt="iPhone 15 Pro Max" class="product-image">
+                    <img src="image/i9 ultra 3.avif" alt="i9 Ultra 3" class="product-image">
                     <div class="product-info">
-                        <h3>Cellular version smartwatch m3</h3>
-                        <div class="product-price">10010gds</div>
-                        <p>La smartwatch M3 est disponible dans des versions qui incluent la connectivité cellulaire (GSM 2G) via un emplacement pour carte micro-SIM, permettant une utilisation autonome pour les appels et messages sans être connectée à un smartphone.</p>
-                        <button class="product-btn" onclick="addToCart('Cellular version smartwatch m3', 10010, '⌚')">Ajouter au Panier</button>
+                        <h3>i9 Ultra 3</h3>
+                        <div class="product-price">3500 gds</div>
+                        <p>Montre intelligente avec suivi santé, fitness et pack complet d'écouteurs et bracelets.</p>
+                        <button class="product-btn" onclick="addToCart('i9 Ultra 3', 3500, '⌚')">Ajouter au Panier</button>
                     </div>
                 </div>
                 <div class="product-card">
-                  <img src="image/smart.jfif" alt="smart watch" class="product-image">
+                    <img src="image/cellular.jfif" alt="Smartwatch M3 Cellular" class="product-image">
                     <div class="product-info">
-                        <h3>Smart Watch max</h3>
-                        <div class="product-price">2500gds</div>
-                        <p>"Smart Watch Max" n'est pas un nom de produit spécifique d'une grande marque, mais fait référence à de nombreux modèles de montres intelligentes économiques génériques souvent caractérisées par un grand écran, des fonctions de santé de base et la connectivité Bluetooth. Certains modèles spécifiques incluent la T55 Pro Max et la Max Pro Prime</p>
-                        <button class="product-btn" onclick="addToCart('Smart Watch max', 2500, '⌚')">Ajouter au Panier</button>
+                        <h3>Smartwatch M3 Cellular</h3>
+                        <div class="product-price">10010 gds</div>
+                        <p>Version cellulaire avec SIM 2G pour appels et messages en toute autonomie.</p>
+                        <button class="product-btn" onclick="addToCart('Smartwatch M3 Cellular', 10010, '⌚')">Ajouter au Panier</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="image/smart.jfif" alt="Smart Watch Max" class="product-image">
+                    <div class="product-info">
+                        <h3>Smart Watch Max</h3>
+                        <div class="product-price">2500 gds</div>
+                        <p>Grand écran, fonctions santé complètes et connectivité Bluetooth à prix accessible.</p>
+                        <button class="product-btn" onclick="addToCart('Smart Watch Max', 2500, '⌚')">Ajouter au Panier</button>
                     </div>
                 </div>
             </div>
@@ -1235,33 +1274,33 @@
             
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h3>Informations</h3>
+                    <h3>Informations de Contact</h3>
                     <div class="contact-item">
                         <div class="contact-icon">📍</div>
                         <div class="contact-item-content">
                             <h4>Adresse</h4>
-                            <p>123 Rue de la Technologie<br>75001 Paris, France</p>
+                            <p>Port-au-Prince, Haïti</p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">📞</div>
                         <div class="contact-item-content">
                             <h4>Téléphone / WhatsApp</h4>
-                            <p><a href="https://wa.me/50934108302" target="_blank" style="color: var(--text-light); text-decoration: none;"> +509 34 10 8302</a></p>
+                            <p><a href="https://wa.me/50934108302" target="_blank" style="color: var(--text-light); text-decoration: none;">+509 34 10 8302</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">✉️</div>
                         <div class="contact-item-content">
                             <h4>Email</h4>
-                             <p><a href="mailto:jeanroodymilien91@gmail.com" style="color: var(--text-light); text-decoration: none;">jeanroodymilien91@gmail.com</a></p>
+                            <p><a href="mailto:jeanroodymilien91@gmail.com" style="color: var(--text-light); text-decoration: none;">jeanroodymilien91@gmail.com</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-icon">🕐</div>
                         <div class="contact-item-content">
-                            <h4>Horaires</h4>
-                            <p>Lun - Sam: 9h00 - 19h00<br>Dimanche: Fermé</p>
+                            <h4>Horaires d'Ouverture</h4>
+                            <p>Lundi - Dimanche<br>9h00 - 19h00</p>
                         </div>
                     </div>
                 </div>
@@ -1270,15 +1309,15 @@
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Nom Complet *</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" placeholder="Votre nom" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" placeholder="votre@email.com" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Téléphone</label>
-                            <input type="tel" id="phone" name="phone">
+                            <input type="tel" id="phone" name="phone" placeholder="+509 XX XX XXXX">
                         </div>
                         <div class="form-group">
                             <label for="service">Type de Demande *</label>
@@ -1292,14 +1331,14 @@
                         </div>
                         <div class="form-group">
                             <label for="message">Message *</label>
-                            <textarea id="message" name="message" required></textarea>
+                            <textarea id="message" name="message" placeholder="Décrivez votre demande..." required></textarea>
                         </div>
                         <div class="button-group">
                             <button type="button" class="submit-btn whatsapp-btn" onclick="sendWhatsApp()">
-                                💬 WhatsApp
+                                💬 Envoyer via WhatsApp
                             </button>
                             <button type="button" class="submit-btn gmail-btn" onclick="sendGmail()">
-                                📧 Gmail
+                                📧 Envoyer par Email
                             </button>
                         </div>
                     </form>
@@ -1311,13 +1350,13 @@
     <!-- Footer -->
     <footer>
         <div class="footer-content">
-           <div class="social-links">
-        <a href="https://www.facebook.com/profile.php?id=61587240992112" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;"></a>
-        <a href="https://www.instagram.com/associationassl07/#" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;"></a>
-        <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;"></a>
-        <a href="https://www.youtube.com/channel/UCZLN8luq2mDHZzPxW3dz-Pw" target="_blank"><img src="image/youtube.png" style="width: 50px; height: 50px;"></a>
-         <a href="https://www.tiktok.com/@asslassociation?is_from_webapp=1&sender_device=pc" target="_blank"><img src="image/tiktok.png" style="width: 50px; height: 50px;"></a>
-    </div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61587240992112" target="_blank"><img src="image/facebook.png" style="width: 50px; height: 50px;" alt="Facebook"></a>
+                <a href="https://www.instagram.com/associationassl07/#" target="_blank"><img src="image/instagram.png" style="width: 50px; height: 50px;" alt="Instagram"></a>
+                <a href="https://wa.me/50936310974" target="_blank"><img src="image/whatsapp.png" style="width: 50px; height: 50px;" alt="WhatsApp"></a>
+                <a href="https://www.youtube.com/channel/UCZLN8luq2mDHZzPxW3dz-Pw" target="_blank"><img src="image/youtube.png" style="width: 50px; height: 50px;" alt="YouTube"></a>
+                <a href="https://www.tiktok.com/@asslassociation?is_from_webapp=1&sender_device=pc" target="_blank"><img src="image/tiktok.png" style="width: 50px; height: 50px;" alt="TikTok"></a>
+            </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 RoodCell. Tous droits réservés. | Vente & Réparation de Montres et Téléphones</p>
             </div>
@@ -1339,7 +1378,7 @@
             <div id="cartSummary" style="display: none;">
                 <div class="cart-total">
                     <h3>Total</h3>
-                    <div class="cart-total-amount" id="cartTotalAmount">0gds</div>
+                    <div class="cart-total-amount" id="cartTotalAmount">0 gds</div>
                 </div>
                 <button class="checkout-btn" onclick="proceedToCheckout()">
                     💬 Commander via WhatsApp
@@ -1604,7 +1643,7 @@ Message envoyé automatiquement via le formulaire de contact du site www.roodcel
                                 <div class="cart-item-icon">${item.icon}</div>
                                 <div class="cart-item-details">
                                     <h3>${item.name}</h3>
-                                    <div class="cart-item-price">${item.price}gds</div>
+                                    <div class="cart-item-price">${item.price} gds</div>
                                     <div class="cart-item-quantity">
                                         <button class="qty-btn" onclick="updateQuantity('${item.name}', -1)">−</button>
                                         <span class="qty-display">${item.quantity}</span>
@@ -1618,7 +1657,7 @@ Message envoyé automatiquement via le formulaire de contact du site www.roodcel
                 `;
                 
                 const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                cartTotalAmount.textContent = `${total}gds`;
+                cartTotalAmount.textContent = `${total} gds`;
                 cartSummary.style.display = 'block';
             }
         }
@@ -1642,17 +1681,17 @@ Message envoyé automatiquement via le formulaire de contact du site www.roodcel
             const currentHour = new Date().getHours();
             const greeting = currentHour < 18 ? 'Bonjour' : 'Bonsoir';
             
-            let message = `${greeting}, j'aimerais acheter les produits suivants :\n\n`;
+            let message = `${greeting}, j'aimerais commander les produits suivants :\n\n`;
             
             cart.forEach(item => {
                 message += `${item.icon} ${item.name}\n`;
                 message += `   Quantité: ${item.quantity}\n`;
-                message += `   Prix unitaire: ${item.price}gds\n`;
-                message += `   Sous-total: ${item.price * item.quantity}gds\n\n`;
+                message += `   Prix unitaire: ${item.price} gds\n`;
+                message += `   Sous-total: ${item.price * item.quantity} gds\n\n`;
             });
             
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            message += `Total: ${total}gds\n\n`;
+            message += `💰 *Total: ${total} gds*\n\n`;
             message += `Merci !`;
             
             const encodedMessage = encodeURIComponent(message);
@@ -1706,5 +1745,4 @@ Message envoyé automatiquement via le formulaire de contact du site www.roodcel
         });
     </script>
 </body>
-            
-        
+</html>
